@@ -47,29 +47,30 @@ const quiz = [
   {q:"Fire is?",o:["Cold","Hot","Wet","Dry"],a:1}
 ];
 
-// 🔀 shuffle questions
+// shuffle
 quiz.sort(() => Math.random() - 0.5);
 
-let i = 0;
-let score = 0;
-let time = 60;
-let timer;
+let i = 0, score = 0, time = 60, timer;
+
+const startBtn = document.getElementById("startBtn");
+const quizBox = document.querySelector(".quiz-box");
+const startScreen = document.getElementById("startScreen");
+const music = document.getElementById("bgMusic");
 
 const qEl = document.getElementById("question");
 const oEl = document.getElementById("options");
 const tEl = document.getElementById("timer");
 const nextBtn = document.getElementById("nextBtn");
-const music = document.getElementById("bgMusic");
-const startBtn = document.getElementById("startBtn");
 
-// 🎮 START BUTTON (fixes sound)
+// START
 startBtn.onclick = () => {
+  startScreen.style.display = "none";
+  quizBox.style.display = "block";
   music.play();
-  startBtn.style.display = "none";
   loadQ();
 };
 
-// ⏱️ TIMER
+// TIMER
 function startTimer(){
   time = 60;
   tEl.innerText = "Time: " + time;
@@ -85,7 +86,7 @@ function startTimer(){
   },1000);
 }
 
-// 📥 LOAD QUESTION
+// LOAD QUESTION
 function loadQ(){
   clearInterval(timer);
   startTimer();
@@ -99,13 +100,13 @@ function loadQ(){
     div.className = "option";
     div.innerText = opt;
 
-    div.onclick = () => checkAnswer(div, idx);
+    div.onclick = () => check(div, idx);
     oEl.appendChild(div);
   });
 }
 
-// ✅ CHECK ANSWER
-function checkAnswer(el, idx){
+// CHECK
+function check(el, idx){
   clearInterval(timer);
 
   const correct = quiz[i].a;
@@ -120,25 +121,17 @@ function checkAnswer(el, idx){
     el.classList.add("wrong");
     options[correct].classList.add("correct");
   }
-
-  nextBtn.style.display = "block";
 }
 
-// ➡️ NEXT QUESTION
+// NEXT
+nextBtn.onclick = nextQ;
+
 function nextQ(){
   i++;
-  nextBtn.style.display = "none";
 
   if(i < quiz.length){
     loadQ();
   } else {
-    document.body.innerHTML = `
-      <h1>🎉 Finished!</h1>
-      <h2>Score: ${score}/40</h2>
-      <button onclick="location.reload()">Restart</button>
-    `;
+    document.body.innerHTML = `<h1>🎉 Score: ${score}/40</h1>`;
   }
 }
-
-// button click
-nextBtn.onclick = nextQ;
