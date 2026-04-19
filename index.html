@@ -2,18 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Quiz App</title>
+  <title>Ultimate Quiz</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="quiz-box">
-  <h1>🎯 Quiz</h1>
-  <div id="timer">Time: 60</div>
-  <div id="question"></div>
+<!-- Start Screen -->
+<div id="startScreen">
+  <h1>🎮 Ultimate Quiz</h1>
+  <button id="startBtn">Start Quiz</button>
+</div>
+
+<!-- Quiz -->
+<div class="quiz-box" style="display:none;">
+  <h2 id="timer">Time: 60</h2>
+  <h3 id="question"></h3>
   <div id="options"></div>
   <button id="nextBtn">Next</button>
 </div>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
 
 <script src="script.js"></script>
 </body>
