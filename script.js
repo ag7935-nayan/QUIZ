@@ -19,11 +19,11 @@ const quiz = [
   {q:"Sun rises from?",o:["West","East","North","South"],a:1},
   {q:"Days in week?",o:["5","6","7","8"],a:2},
   {q:"Liquid metal?",o:["Iron","Mercury","Gold","Silver"],a:1},
-  {q:"Photosynthesis?",o:["Plants","Animals","Humans","None"],a:0},
+  {q:"Photosynthesis done by?",o:["Plants","Animals","Humans","None"],a:0},
   {q:"Heart pumps?",o:["Air","Blood","Water","Food"],a:1},
 
   {q:"Who killed Ravana?",o:["Krishna","Rama","Shiva","Hanuman"],a:1},
-  {q:"Krishna born?",o:["Mathura","Delhi","Ayodhya","Kashi"],a:0},
+  {q:"Krishna born in?",o:["Mathura","Delhi","Ayodhya","Kashi"],a:0},
   {q:"Triangle sides?",o:["2","3","4","5"],a:1},
   {q:"Largest planet?",o:["Earth","Mars","Jupiter","Venus"],a:2},
   {q:"Smallest number?",o:["10","2","5","7"],a:1},
@@ -47,56 +47,98 @@ const quiz = [
   {q:"Fire is?",o:["Cold","Hot","Wet","Dry"],a:1}
 ];
 
-// shuffle
+// 🔀 shuffle questions
 quiz.sort(() => Math.random() - 0.5);
 
-let i = 0, score = 0, time = 60, timer;
+let i = 0;
+let score = 0;
+let time = 60;
+let timer;
 
 const qEl = document.getElementById("question");
 const oEl = document.getElementById("options");
 const tEl = document.getElementById("timer");
 const nextBtn = document.getElementById("nextBtn");
+const music = document.getElementById("bgMusic");
+const startBtn = document.getElementById("startBtn");
 
-function loadQ(){
-  clearInterval(timer);
+// 🎮 START BUTTON (fixes sound)
+startBtn.onclick = () => {
+  music.play();
+  startBtn.style.display = "none";
+  loadQ();
+};
+
+// ⏱️ TIMER
+function startTimer(){
   time = 60;
+  tEl.innerText = "Time: " + time;
+
   timer = setInterval(()=>{
     time--;
     tEl.innerText = "Time: " + time;
-    if(time<=0) next();
+
+    if(time <= 0){
+      clearInterval(timer);
+      nextQ();
+    }
   },1000);
+}
+
+// 📥 LOAD QUESTION
+function loadQ(){
+  clearInterval(timer);
+  startTimer();
 
   const q = quiz[i];
   qEl.innerText = q.q;
   oEl.innerHTML = "";
 
   q.o.forEach((opt,idx)=>{
-    let div = document.createElement("div");
-    div.className="option";
-    div.innerText=opt;
-    div.onclick=()=>check(div,idx);
+    const div = document.createElement("div");
+    div.className = "option";
+    div.innerText = opt;
+
+    div.onclick = () => checkAnswer(div, idx);
     oEl.appendChild(div);
   });
 }
 
-function check(el,idx){
+// ✅ CHECK ANSWER
+function checkAnswer(el, idx){
   clearInterval(timer);
-  let correct = quiz[i].a;
-  document.querySelectorAll(".option").forEach(o=>o.onclick=null);
 
-  if(idx===correct){ el.classList.add("correct"); score++; }
-  else{
+  const correct = quiz[i].a;
+  const options = document.querySelectorAll(".option");
+
+  options.forEach(o => o.onclick = null);
+
+  if(idx === correct){
+    el.classList.add("correct");
+    score++;
+  } else {
     el.classList.add("wrong");
-    document.querySelectorAll(".option")[correct].classList.add("correct");
+    options[correct].classList.add("correct");
+  }
+
+  nextBtn.style.display = "block";
+}
+
+// ➡️ NEXT QUESTION
+function nextQ(){
+  i++;
+  nextBtn.style.display = "none";
+
+  if(i < quiz.length){
+    loadQ();
+  } else {
+    document.body.innerHTML = `
+      <h1>🎉 Finished!</h1>
+      <h2>Score: ${score}/40</h2>
+      <button onclick="location.reload()">Restart</button>
+    `;
   }
 }
 
-function next(){
-  i++;
-  if(i<quiz.length) loadQ();
-  else document.body.innerHTML=`<h1>Score: ${score}/40</h1>`;
-}
-
-nextBtn.onclick = next;
-
-loadQ();
+// button click
+nextBtn.onclick = nextQ;
