@@ -7,21 +7,29 @@
 </head>
 <body>
 
-<!-- Start Screen -->
-<div id="startScreen">
-  <h1>🎮 Ultimate Quiz</h1>
-  <button id="startBtn">Start Quiz</button>
+<div class="app">
+
+  <!-- Start Screen -->
+  <div id="startScreen" class="card">
+    <h1>Ultimate Quiz</h1>
+    <p></p>
+    <p class="credit">Presented by Gurukul</p>
+    <button id="startBtn">Start Quiz</button>
+  </div>
+
+  <!-- Quiz -->
+  <div id="quizBox" class="card hidden">
+    <div class="top">
+      <span id="timer">60s</span>
+      <span id="progress">1 / 40</span>
+    </div>
+
+    <h2 id="question"></h2>
+    <div id="options"></div>
+  </div>
+
 </div>
 
-<!-- Quiz -->
-<div class="quiz-box" style="display:none;">
-  <h2 id="timer">Time: 60</h2>
-  <h3 id="question"></h3>
-  <div id="options"></div>
-  <button id="nextBtn">Next</button>
-</div>
-
-<!-- Music -->
 <audio id="bgMusic" loop>
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
 </audio>
