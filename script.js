@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 const quiz = [
   {q:"Capital of India?",o:["Mumbai","Delhi","Kolkata","Chennai"],a:1},
   {q:"Red planet?",o:["Earth","Mars","Venus","Jupiter"],a:1},
@@ -47,25 +49,24 @@ const quiz = [
   {q:"Fire is?",o:["Cold","Hot","Wet","Dry"],a:1}
 ];
 
-// shuffle
 quiz.sort(() => Math.random() - 0.5);
 
 let i = 0, score = 0, time = 60, timer;
 
 const startBtn = document.getElementById("startBtn");
-const quizBox = document.querySelector(".quiz-box");
+const quizBox = document.getElementById("quizBox");
 const startScreen = document.getElementById("startScreen");
 const music = document.getElementById("bgMusic");
 
 const qEl = document.getElementById("question");
 const oEl = document.getElementById("options");
 const tEl = document.getElementById("timer");
-const nextBtn = document.getElementById("nextBtn");
+const pEl = document.getElementById("progress");
 
 // START
 startBtn.onclick = () => {
-  startScreen.style.display = "none";
-  quizBox.style.display = "block";
+  startScreen.classList.add("hidden");
+  quizBox.classList.remove("hidden");
   music.play();
   loadQ();
 };
@@ -73,11 +74,11 @@ startBtn.onclick = () => {
 // TIMER
 function startTimer(){
   time = 60;
-  tEl.innerText = "Time: " + time;
+  tEl.innerText = time + "s";
 
   timer = setInterval(()=>{
     time--;
-    tEl.innerText = "Time: " + time;
+    tEl.innerText = time + "s";
 
     if(time <= 0){
       clearInterval(timer);
@@ -93,19 +94,20 @@ function loadQ(){
 
   const q = quiz[i];
   qEl.innerText = q.q;
+  pEl.innerText = (i+1) + " / " + quiz.length;
+
   oEl.innerHTML = "";
 
   q.o.forEach((opt,idx)=>{
-    const div = document.createElement("div");
+    let div = document.createElement("div");
     div.className = "option";
     div.innerText = opt;
-
     div.onclick = () => check(div, idx);
     oEl.appendChild(div);
   });
 }
 
-// CHECK
+// CHECK ANSWER (AUTO NEXT)
 function check(el, idx){
   clearInterval(timer);
 
@@ -121,17 +123,26 @@ function check(el, idx){
     el.classList.add("wrong");
     options[correct].classList.add("correct");
   }
+
+  setTimeout(() => {
+    nextQ();
+  }, 1500);
 }
 
 // NEXT
-nextBtn.onclick = nextQ;
-
 function nextQ(){
   i++;
 
   if(i < quiz.length){
     loadQ();
   } else {
-    document.body.innerHTML = `<h1>🎉 Score: ${score}/40</h1>`;
+    quizBox.innerHTML = `
+      <h1>🎉 Quiz Finished!</h1>
+      <h2>Your Score: ${score} / ${quiz.length}</h2>
+      <p class="credit">Presented by Gurukul</p>
+      <button onclick="location.reload()">Play Again</button>
+    `;
   }
 }
+
+});
