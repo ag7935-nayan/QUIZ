@@ -2,73 +2,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const quiz = [
   {q:"Capital of India?",o:["Mumbai","Delhi","Kolkata","Chennai"],a:1},
-  {q:"Red planet?",o:["Earth","Mars","Venus","Jupiter"],a:1},
-  {q:"Gas we breathe?",o:["Oxygen","CO2","Nitrogen","Hydrogen"],a:0},
-  {q:"5+3?",o:["6","7","8","9"],a:2},
-  {q:"Water freezes at?",o:["0","10","50","100"],a:0},
-  {q:"King of jungle?",o:["Tiger","Lion","Elephant","Bear"],a:1},
-  {q:"Festival of lights?",o:["Holi","Diwali","Eid","Christmas"],a:1},
-  {q:"Ram's wife?",o:["Radha","Sita","Lakshmi","Parvati"],a:1},
-  {q:"Monkey god?",o:["Hanuman","Shiva","Krishna","Brahma"],a:0},
-  {q:"Earth is?",o:["Star","Planet","Moon","Comet"],a:1},
-
-  {q:"10-4?",o:["5","6","7","8"],a:1},
-  {q:"2x3?",o:["5","6","7","8"],a:1},
-  {q:"Vowel?",o:["B","C","A","D"],a:2},
-  {q:"Opposite of hot?",o:["Cold","Warm","Cool","Heat"],a:0},
-  {q:"Plural of cat?",o:["Cats","Catss","Cates","Catz"],a:0},
-
-  {q:"Sun rises from?",o:["West","East","North","South"],a:1},
-  {q:"Days in week?",o:["5","6","7","8"],a:2},
-  {q:"Liquid metal?",o:["Iron","Mercury","Gold","Silver"],a:1},
-  {q:"Photosynthesis done by?",o:["Plants","Animals","Humans","None"],a:0},
-  {q:"Heart pumps?",o:["Air","Blood","Water","Food"],a:1},
-
-  {q:"Who killed Ravana?",o:["Krishna","Rama","Shiva","Hanuman"],a:1},
-  {q:"Krishna born in?",o:["Mathura","Delhi","Ayodhya","Kashi"],a:0},
-  {q:"Triangle sides?",o:["2","3","4","5"],a:1},
   {q:"Largest planet?",o:["Earth","Mars","Jupiter","Venus"],a:2},
-  {q:"Smallest number?",o:["10","2","5","7"],a:1},
+  {q:"Gas plants use for photosynthesis?",o:["Oxygen","CO2","Nitrogen","Hydrogen"],a:1},
+  {q:"7 + 8 = ?",o:["14","15","16","17"],a:1},
 
-  {q:"Leaf color?",o:["Red","Blue","Green","Yellow"],a:2},
-  {q:"Milk animal?",o:["Dog","Cat","Cow","Lion"],a:2},
-  {q:"Flying bird?",o:["Dog","Elephant","Sparrow","Tiger"],a:2},
-  {q:"Independence year?",o:["1945","1947","1950","1960"],a:1},
-  {q:"National animal?",o:["Lion","Tiger","Elephant","Cow"],a:1},
+  {q:"Which day comes after Monday?",o:["Sunday","Tuesday","Friday","Saturday"],a:1},
+  {q:"How many legs does a dog have?",o:["2","3","4","5"],a:2},
+  {q:"Which is a fruit?",o:["Carrot","Potato","Apple","Onion"],a:2},
 
-  {q:"National bird?",o:["Parrot","Peacock","Crow","Eagle"],a:1},
-  {q:"Hours in day?",o:["12","24","36","48"],a:1},
-  {q:"7+2?",o:["8","9","10","11"],a:1},
-  {q:"Color of sky?",o:["Green","Blue","Red","Yellow"],a:1},
-  {q:"Dog sound?",o:["Meow","Bark","Roar","Moo"],a:1},
+  {q:"Water boils at?",o:["90°C","100°C","120°C","80°C"],a:1},
+  {q:"Currency of India?",o:["Dollar","Rupee","Euro","Yen"],a:1},
+  {q:"Which is a mammal?",o:["Shark","Frog","Whale","Lizard"],a:2},
 
-  {q:"Shape with 4 sides?",o:["Triangle","Square","Circle","Oval"],a:1},
-  {q:"Opposite of big?",o:["Small","Large","Huge","Tall"],a:0},
-  {q:"Fast animal?",o:["Turtle","Cheetah","Snail","Cow"],a:1},
-  {q:"Rain comes from?",o:["Clouds","Ground","Trees","Sun"],a:0},
-  {q:"Fire is?",o:["Cold","Hot","Wet","Dry"],a:1}
+  {q:"Sun is a?",o:["Planet","Star","Moon","Asteroid"],a:1},
+  {q:"12 ÷ 3 = ?",o:["3","4","5","6"],a:1},
+  {q:"Which organ pumps blood?",o:["Lungs","Brain","Heart","Kidney"],a:2},
+  {q:"National bird of India?",o:["Parrot","Crow","Peacock","Eagle"],a:2},
+  {q:"Which is not a solid?",o:["Ice","Water","Stone","Wood"],a:1},
+
+  {q:"Largest ocean?",o:["Atlantic","Indian","Pacific","Arctic"],a:2},
+  {q:"Which festival uses colors?",o:["Diwali","Holi","Eid","Christmas"],a:1},
+  {q:"9 × 6 = ?",o:["54","56","52","50"],a:0},
+  {q:"Which is a primary color?",o:["Green","Purple","Red","Pink"],a:2},
+  {q:"Which animal is herbivore?",o:["Lion","Cow","Tiger","Wolf"],a:1},
+
+  {q:"Speed of light unit?",o:["m/s","km","kg","cm"],a:0},
+  {q:"India independence year?",o:["1945","1946","1947","1950"],a:2},
+  {q:"Which is a continent?",o:["Asia","India","USA","Delhi"],a:0},
+  {q:"Triangle angles sum?",o:["90°","180°","360°","270°"],a:1},
+  {q:"Which is largest mammal?",o:["Elephant","Whale","Tiger","Horse"],a:1},
+
+  {q:"Which planet has rings?",o:["Mars","Earth","Saturn","Venus"],a:2},
+  {q:"15 + 10 = ?",o:["20","25","30","35"],a:1},
+  {q:"Which gas do humans exhale?",o:["Oxygen","CO2","Nitrogen","Hydrogen"],a:1},
+  {q:"Which is a programming language?",o:["HTML","Python","HTTP","WWW"],a:1},
+  {q:"Which is not a fruit?",o:["Apple","Carrot","Banana","Mango"],a:1}
 ];
 
 quiz.sort(() => Math.random() - 0.5);
 
 let i = 0, score = 0, time = 60, timer;
 
-const startBtn = document.getElementById("startBtn");
+const easyBtn = document.getElementById("easyBtn");
+const hardBtn = document.getElementById("hardBtn");
+
 const quizBox = document.getElementById("quizBox");
 const startScreen = document.getElementById("startScreen");
-const music = document.getElementById("bgMusic");
+
+const tickSound = document.getElementById("tickSound");
 
 const qEl = document.getElementById("question");
 const oEl = document.getElementById("options");
 const tEl = document.getElementById("timer");
 const pEl = document.getElementById("progress");
 
-// START
-startBtn.onclick = () => {
+// EASY MODE
+easyBtn.onclick = () => {
   startScreen.classList.add("hidden");
   quizBox.classList.remove("hidden");
-  music.play();
-  loadQ();
+  loadQ(); // no bg music
+};
+
+// HARD MODE REDIRECT
+hardBtn.onclick = () => {
+  window.location.href = "https://ag7935-nayan.github.io/QUIZ-hard/";
 };
 
 // TIMER
@@ -76,18 +73,26 @@ function startTimer(){
   time = 60;
   tEl.innerText = time + "s";
 
+  tickSound.currentTime = 0;
+  tickSound.play();
+
   timer = setInterval(()=>{
     time--;
     tEl.innerText = time + "s";
 
+    if(time <= 10){
+      tickSound.playbackRate = 1.7;
+    }
+
     if(time <= 0){
       clearInterval(timer);
+      tickSound.pause();
       nextQ();
     }
   },1000);
 }
 
-// LOAD QUESTION
+// LOAD
 function loadQ(){
   clearInterval(timer);
   startTimer();
@@ -107,9 +112,11 @@ function loadQ(){
   });
 }
 
-// CHECK ANSWER (AUTO NEXT)
+// CHECK
 function check(el, idx){
   clearInterval(timer);
+  tickSound.pause();
+  tickSound.playbackRate = 1;
 
   const correct = quiz[i].a;
   const options = document.querySelectorAll(".option");
@@ -124,9 +131,7 @@ function check(el, idx){
     options[correct].classList.add("correct");
   }
 
-  setTimeout(() => {
-    nextQ();
-  }, 1500);
+  setTimeout(nextQ, 1500);
 }
 
 // NEXT
